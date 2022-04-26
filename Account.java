@@ -1,13 +1,16 @@
 package project1;
 
+import java.util.UUID;
+
+
 public class Account {
 	
 	private double balance; 
 	private final AccountOwner accountOwner;
-	private final long accountNumber; 
+	private final UUID accountNumber; 
+	
 	
 
-	
 	enum AccountProperties{
 		BRONZE(4.5,6,5,7.5,10000,2500),
 		SILVER(3,4.5,3.8,5,20000, 4000),
@@ -62,6 +65,7 @@ public class Account {
 	
 	public Account() {
 		
+		accountNumber = UUID.randomUUID();
 		
 		
 	}

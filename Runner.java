@@ -1,16 +1,18 @@
 package project1;
 
+import java.util.UUID;
+
 public class Runner {
 
 	public static void main(String[] args) {
-		checkPerson(); 
+		
+		
+		UUID uniqueKey = UUID.randomUUID();
+	    System.out.println (uniqueKey);
 		
 	}
 	
 	
-	public static void checkPerson() {
-
-	}
 	
 	
 	
