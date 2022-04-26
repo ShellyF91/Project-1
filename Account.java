@@ -93,8 +93,27 @@ public class Account {
 		LocalDate timeStamp = LocalDate.now(); 
 		String info = String.format("a deposit of %f NIS.", depositAmount);
 		addActivityToHistory(timeStamp, depositAmount, info, "DEPOSIT");
+		
+		System.out.println("the process ended succesfully.");
 	}
 	
+	public void withdrawal(double amountToWithdraw) {
+		if(amountToWithdraw > accountProperties.maxWithdrawalAmount) {
+			System.out.println("the amount is higher than your daily max, which is " 
+		                        + accountProperties.getMaxWithdrawalAmount() + ". please try again");
+		}
+		else {
+			balance -= amountToWithdraw;
+			LocalDate timeStamp = LocalDate.now(); 
+			String info = String.format("a withdrawal of %f NIS.", amountToWithdraw);
+			addActivityToHistory(timeStamp, amountToWithdraw, info, "WITHDRAWAL");
+			
+			System.out.println("the process ended succesfully.");
+			
+		}
+			
+		
+	}
 	
 	
 
