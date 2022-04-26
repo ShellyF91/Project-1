@@ -1,15 +1,15 @@
 package project1;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 
 public class Account {
 	
 	private double balance; 
-	private final AccountOwner accountOwner;
 	private final UUID accountNumber; 
-	
-	
+	private ActivityData [] history; 
+	private int historyIndex;
 
 	enum AccountProperties{
 		BRONZE(4.5,6,5,7.5,10000,2500),
@@ -60,19 +60,43 @@ public class Account {
 	}
 
 	AccountProperties accountProperties;
-
 	
 	
 	public Account() {
-		
 		accountNumber = UUID.randomUUID();
-		
-		
+		history = new ActivityData[100]; 
+		historyIndex = 0; 
 	}
+	
 	
 	public double getBalance() {
 		return balance;
 	}
+	
+	public int getHistoryIndex() {
+		return historyIndex;
+	}
+	
+	
+	public ActivityData getHistoryInIndex(int i) {
+		return history[i];
+	}
+	
+	public void addActivityToHistory(LocalDate timeStamp, double balanceChange, String info, String activityName) {
+		history[historyIndex] = new ActivityData(timeStamp, balanceChange, info, activityName);
+		historyIndex++;
+	}
+	
+	public void deposit(double depositAmount) {
+		balance += depositAmount;
+		
+		LocalDate timeStamp = LocalDate.now(); 
+		String info = String.format("a deposit of %f NIS.", depositAmount);
+		addActivityToHistory(timeStamp, depositAmount, info, "DEPOSIT");
+	}
+	
+	
+	
 
 	
 	

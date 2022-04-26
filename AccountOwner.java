@@ -1,5 +1,7 @@
 package project1;
 
+import java.time.LocalDate;
+
 public class AccountOwner extends Person {
 	 
 	private double monthlyIncome; //input from user
@@ -33,11 +35,39 @@ public class AccountOwner extends Person {
 		return credentials;
 	}
 	
+	//Use Case 3
+	public void checkBalance() {
+		System.out.println("your account balance is: " + account.getBalance());
+	}
 	
-
+	//Use Case 4
+	public void  produceActivityReport(LocalDate startDate) {
+		LocalDate currDate = LocalDate.now();
+		System.out.println("Your activity report from " + startDate + " to " + currDate);
+		int i = 0; 
+		LocalDate temp;
+		while(i <= account.getHistoryIndex()) {
+			temp = LocalDate.parse(account.getHistoryInIndex(i).getTimeStamp().toString());
+			if(startDate.isAfter(temp)){
+				System.out.println(account.getHistoryInIndex(i).toString());
+			}
+		System.out.println("***** your account balance is: " + account.getBalance() + " *****");
+		}
+	}
+	//Use Case 5
+	public void makeADeposit(double amountToDeposit) {
+		account.deposit(amountToDeposit);
+		
+	}
 	
 	
-	
-	
-
+			
+		
 }
+
+	
+	
+	
+	
+
+
