@@ -7,8 +7,12 @@ public class AccountOwner extends Person {
 	private double monthlyIncome; //input from user
 	public Account account; //needs to be created
 	Credentials credentials;//input from user
-	private BankManager bankManager; 
+	private static BankManager bankManager; 
 	boolean isManager;
+	
+	static {
+		bankManager = new BankManager("Eli", "Levi", "0526666666", 6, 6, 1966, 0, "EliTheKing", "666666", true);
+	}
 	
 
 	public AccountOwner(String firstName, String lastName, String phoneNumber, int birthDay, int birthMonth,int birthYear, double monthlyIncome,

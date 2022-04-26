@@ -33,6 +33,7 @@ public class Utils {
 		System.out.println("enter a user name:");
 		String userName= scanner.nextLine();
 		
+		
 		System.out.println("enter a password:");
 		String password = scanner.nextLine();
 		

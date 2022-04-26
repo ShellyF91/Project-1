@@ -26,25 +26,25 @@ public class BankManager extends AccountOwner {
 	}
 	
 	private void approveAccounts() {
+		
 		Account temp;
+		String type;
 		for(int i = 0; i < accountsToApproveIndex; i++) {
 			if((accountsToApprove[i].getMonthlyIncome() <= 0)) {
-				temp = new Account("BRONZE"); 
-				accountsToApprove[i].account = temp;
+				type = "BRONZE"; 
 			}
-			else if(accountsToApprove[i].getMonthlyIncome() > 0 && accountsToApprove[i].getMonthlyIncome() < 10000) {
-				temp = new Account("SILVER"); 
-				accountsToApprove[i].account = temp;
+			else if(accountsToApprove[i].getMonthlyIncome() > 0 && accountsToApprove[i].getMonthlyIncome() < 10000) {; 
+				type = "SILVER"; 
 			}
 			else if(accountsToApprove[i].getMonthlyIncome() > 10000 && accountsToApprove[i].getMonthlyIncome() < 30000) {
-				temp = new Account("GOLD"); 
-				accountsToApprove[i].account = temp;
+				type = "GOLD"; 
 			}
 			else {
-				temp = new Account("TITANIUM"); 
-				accountsToApprove[i].account = temp;
+				type = "TITANIUM"; 
 			}
 			
+			temp = new Account(type); 
+			accountsToApprove[i].account = temp;
 			accountsToApprove[i] = null;
 		}
 		accountsToApproveIndex = 0; 

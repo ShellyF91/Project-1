@@ -10,7 +10,6 @@ public class Account {
 	private final UUID accountNumber; 
 	private ActivityData [] history; 
 	private int historyIndex;
-	private BankManager bankManager;
 
 	enum AccountProperties{
 		BRONZE(4.5,6,5,7.5,10000,2500),
@@ -73,6 +72,7 @@ public class Account {
 	private void setAccountProperties(String accountProperties) {
 		this.accountProperties = AccountProperties.valueOf(accountProperties);
 	}
+	
 	public double getBalance() {
 		return balance;
 	}

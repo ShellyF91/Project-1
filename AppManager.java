@@ -7,35 +7,41 @@ public class AppManager {
 	
 	private AccountOwner currUser;
 	private static AccountOwner[] users;
+	private static int usersIndex; 
 	
 	static {
 		users = new AccountOwner [100]; 
+		usersIndex = 0; 
 	}
 	
 	public AppManager() {
 		
 	}
 	
+	public int getUsersIndex() {
+		return usersIndex;
+	}
+	
 	public void openApp() {
+		int optionInput;
 		System.out.println("Welcome to the bank app! please enter 1 to login, 2 to open an account, 0 to exit");
-		int optionInput = -1;
-		while(optionInput != 0) {
-			optionInput= Integer.parseInt(Utils.scanner.nextLine());
-			switch(optionInput) {
-				case 1:
-					login();
-					break; 
-				case 2: 
-					openAccount();
-					break; 
-				case 0: 
-					Utils.scanner.close();
-					System.out.println("Goodbye!");
-					break;
-				default: 
-					System.out.println("please try again");
+		optionInput= Integer.parseInt(Utils.scanner.nextLine());
+		switch(optionInput) {
+			case 1:
+				login();
+				Utils.scanner.close();
+				break; 
+			case 2: 
+				openAccount();
+				Utils.scanner.close();
+				break; 
+			case 0: 
+				Utils.scanner.close();
+				System.out.println("Goodbye!");
+				break;
+			default: 
+				System.out.println("please try again");
 			}
-		}
 	}
 	
 	public void login() {
@@ -143,15 +149,23 @@ public class AppManager {
 	}
 	
 	public void openAccount() {
-		
 		System.out.println("--------Open a new account--------");
 		currUser = Utils.createNewAccountOwner();
-		currUser.askForNewAccount();
+		if(isUserNameExist(currUser.credentials.getUserName())) {
+			System.out.println("user name alreay exist, please try again.");
+			currUser = null; 
+		}
+		else {
+			currUser.askForNewAccount();
+			System.out.println("you have submitted succesfully. Your account will be approved soon.");
+			users[usersIndex] = currUser;
+			usersIndex++;
+		}	
 	}
 	
 	
 	public boolean isUserNameExist(String userName) {
-		for(int i = 0; i < users.length; i++) {
+		for(int i = 0; i < usersIndex || users[i] != null; i++) {
 			if(users[i].getCredentials().getUserName().equals(userName))
 				return true; 
 		}
@@ -159,7 +173,7 @@ public class AppManager {
 	}
 	
 	public boolean isPasswordCorrect(String password) {
-		for(int i = 0; i < users.length; i++) {
+		for(int i = 0; i < usersIndex || users[i] != null; i++) {
 			if(users[i].credentials.getPassword().equals(password))
 				return true; 
 		}
@@ -167,7 +181,7 @@ public class AppManager {
 	}
 	
 	public AccountOwner findAccountOwnerByName(String userName) {
-		for(int i = 0; i < users.length; i++) {
+		for(int i = 0; i < usersIndex || users[i] != null; i++) {
 			if(users[i].credentials.getUserName() == userName)
 				return users[i]; 
 		}
@@ -175,13 +189,11 @@ public class AppManager {
 	}
 	
 	public static AccountOwner findAccountOwnerByPhoneNumber(String phoneNumber) {
-		for(int i = 0; i < users.length; i++) {
+		for(int i = 0; i < usersIndex || users[i] != null; i++) {
 			if(users[i].getPhoneNumber() == phoneNumber)
 				return users[i]; 
 		}
 		return null;
 	}
-
-
 
 }
