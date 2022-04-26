@@ -80,25 +80,23 @@ public class AppManager {
 	
 	public void openAccount() {
 		
-		System.out.println("--------Open a new account--------");
-		String firstName;
-		String lastName;
-		String phoneNumber;
-		int birthDay;
-		int birthMonth;
-		int birthYear;
-		double monthlyIncome;
-		String userName;
-		String password;
-		
-		System.out.println("please enter your first name");
-		System.out.println("please enter your last name");
-		
-		
-		
-		currUser = new AccountOwner(firstName, lastName, phoneNumber, birthDay, birthMonth, birthYear, monthlyIncome, userName, password);
-
-		
+//		System.out.println("--------Open a new account--------");
+//		String firstName;
+//		String lastName;
+//		String phoneNumber;
+//		int birthDay;
+//		int birthMonth;
+//		int birthYear;
+//		double monthlyIncome;
+//		String userName;
+//		String password;
+//		
+//		System.out.println("please enter your first name");
+//		System.out.println("please enter your last name");
+//		
+//		
+//		
+//		currUser = new AccountOwner(firstName, lastName, phoneNumber, birthDay, birthMonth, birthYear, monthlyIncome, userName, password);
 	
 	}
 	
@@ -122,11 +120,20 @@ public class AppManager {
 		return false;
 	}
 	
-	private AccountOwner findAccountOwnerByName(String userName) {
+	public AccountOwner findAccountOwnerByName(String userName) {
 		for(int i = 0; i < users.length; i++) {
 			if(users[i].credentials.getUserName() == userName)
 				return users[i]; 
 		}
+		return null;
+	}
+	
+	public static AccountOwner findAccountOwnerByPhoneNumber(String phoneNumber) {
+		for(int i = 0; i < users.length; i++) {
+			if(users[i].getPhoneNumber() == phoneNumber)
+				return users[i]; 
+		}
+		return null;
 	}
 
 

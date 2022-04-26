@@ -6,7 +6,6 @@ public class AccountOwner extends Person {
 	 
 	private double monthlyIncome; //input from user
 	private Account account; //needs to be created
-	Person person;//input from user
 	Credentials credentials;//input from user
 	private BankManager bankManager; 
 	
@@ -64,6 +63,20 @@ public class AccountOwner extends Person {
 	public void makeAWithdrawal(double amountToWithdraw) {
 		account.withdrawal(amountToWithdraw);
 	}
+	//Use case 7 
+	public void transferFunds(double amountToTransfer, String phoneNumber) {
+		AccountOwner receivingAccount;
+		if(amountToTransfer >= 2000) {
+			System.out.println("Failed to transfer the money.");
+		}
+		else {
+			receivingAccount = AppManager.findAccountOwnerByPhoneNumber(phoneNumber);
+			receivingAccount.makeADeposit(amountToTransfer);
+			account.withdrawal(amountToTransfer);
+		}	
+	}
+	
+	
 	
 	
 	
