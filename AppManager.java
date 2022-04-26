@@ -144,23 +144,9 @@ public class AppManager {
 	
 	public void openAccount() {
 		
-//		System.out.println("--------Open a new account--------");
-//		String firstName;
-//		String lastName;
-//		String phoneNumber;
-//		int birthDay;
-//		int birthMonth;
-//		int birthYear;
-//		double monthlyIncome;
-//		String userName;
-//		String password;
-//		
-//		System.out.println("please enter your first name");
-//		System.out.println("please enter your last name");
-//		
-//		
-//		
-//		currUser = new AccountOwner(firstName, lastName, phoneNumber, birthDay, birthMonth, birthYear, monthlyIncome, userName, password);
+		System.out.println("--------Open a new account--------");
+		currUser = Utils.createNewAccountOwner();
+		currUser.askForNewAccount();
 	}
 	
 	
