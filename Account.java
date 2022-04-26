@@ -127,9 +127,11 @@ public class Account {
 		addActivityToHistory(timeStamp, loanAmount, info, "GET_LOAN");
 		
 		System.out.println("the process ended succesfully.");
-		
 	}
 	
+	public void payBill(double loanAmount,int numOfpayments) {
+		
+	}
 	
 	
 	

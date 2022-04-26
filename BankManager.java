@@ -46,9 +46,11 @@ public class BankManager extends Person {
 			
 			accountsToApprove[i] = null;
 		}
-		
 		accountsToApproveIndex = 0; 
-		
+	}
+	
+	public void addToBankTotalBalance(double amount) {
+		bankTotalBalance += amount;
 	}
 	
 }

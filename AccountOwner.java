@@ -83,8 +83,22 @@ public class AccountOwner extends Person {
 		}	
 	}
 	
+	//Use case 8
+	public void payBill(boolean isPaymentForTheBank, double billAmount) {
+		if(billAmount > 5000) {
+			System.out.println("Failed to pay bill.");
+		}
+		else {
+			account.withdrawal(billAmount);
+			if(isPaymentForTheBank)
+				bankManager.addToBankTotalBalance(billAmount);
+		}
+		
+	}
+	
 	//Use case 9
-	public void askForLoan(double loanAmount, int numOfpayments) {
+	public void askForLoan(double loanAmount) {
+		//TODO check who to pay to 
 		if(loanAmount > account.accountProperties.getMaxLoanAmount() || numOfpayments > 60) {
 			System.out.println("The loan request was denied");
 		}
