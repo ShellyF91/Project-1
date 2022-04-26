@@ -109,7 +109,6 @@ public class Account {
 			addActivityToHistory(timeStamp, amountToWithdraw, info, "WITHDRAWAL");
 			
 			System.out.println("the process ended succesfully.");
-			
 		}
 			
 		

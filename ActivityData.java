@@ -41,9 +41,8 @@ public class ActivityData {
 		this.activityName = ActivityName.valueOf(activityName);
 	}
 	
-	public String getTimeStamp() {
-		String stringTimeStamp = timeStamp.toString();
-		return stringTimeStamp;
+	public LocalDate getTimeStamp() {
+		return timeStamp;
 	}
 	
 	public double getBalanceChangee() {

@@ -56,9 +56,16 @@ public class AccountOwner extends Person {
 	}
 	//Use Case 5
 	public void makeADeposit(double amountToDeposit) {
+		//TODO the 4 digit authentication thing
 		account.deposit(amountToDeposit);
-		
 	}
+	
+	//Use Case 6
+	public void makeAWithdrawal(double amountToWithdraw) {
+		account.withdrawal(amountToWithdraw);
+	}
+	
+	
 	
 	
 			
