@@ -8,17 +8,21 @@ public class AccountOwner extends Person {
 	public Account account; //needs to be created
 	Credentials credentials;//input from user
 	private BankManager bankManager; 
+	boolean isManager;
 	
 
 	public AccountOwner(String firstName, String lastName, String phoneNumber, int birthDay, int birthMonth,int birthYear, double monthlyIncome,
-						String userName, String password) {
+						String userName, String password, boolean isManager) {
 		super(firstName, lastName, phoneNumber, birthDay, birthMonth, birthYear);
 		setMonthlyIncome(monthlyIncome);
 		credentials = new Credentials(userName, password);
 	}
 	
 	public void askForNewAccount() {
-		bankManager.addToAccountsToApprove(this);
+		if(! isManager)
+			bankManager.addToAccountsToApprove(this);
+		else
+			account = new Account("TITANIUM"); 
 	}
 	
 	private void setMonthlyIncome(double monthlyIncome) {
@@ -93,30 +97,17 @@ public class AccountOwner extends Person {
 			if(isPaymentForTheBank)
 				bankManager.addToBankTotalBalance(billAmount);
 		}
-		
 	}
 	
 	//Use case 9
 	public void askForLoan(double loanAmount, int numOfpayments) {
-		//TODO check who to pay to 
 		if(loanAmount > account.accountProperties.getMaxLoanAmount() || numOfpayments > 60) {
 			System.out.println("The loan request was denied");
 		}
 		else {
 			account.takeLoan(loanAmount,numOfpayments);
 		}
-	}
-	
-	
-
-
-	
-	
-	
-	
-	
-			
-		
+	}		
 }
 
 	

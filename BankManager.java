@@ -1,6 +1,6 @@
 package project1;
 
-public class BankManager extends Person {
+public class BankManager extends AccountOwner {
 	
 	private AccountOwner [] accountsToApprove;
 	private AccountOwner [] managedAccounts;
@@ -10,8 +10,9 @@ public class BankManager extends Person {
 	
 	
 	
-	public BankManager(String firstName, String lastName, String phoneNumber, int birthDay, int birthMonth, int birthYear) {
-		super(firstName, lastName, phoneNumber, birthDay, birthMonth, birthYear); 
+	public BankManager(String firstName, String lastName, String phoneNumber, int birthDay, int birthMonth,int birthYear, double monthlyIncome,
+			          String userName, String password, boolean isManager) {
+		super(firstName, lastName, phoneNumber, birthDay, birthMonth, birthYear, monthlyIncome, userName, password, isManager); 
 		accountsToApprove = new AccountOwner[100]; 
 		managedAccounts =  new AccountOwner[100];
 		accountsToApproveIndex = 0; 
