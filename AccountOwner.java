@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class AccountOwner extends Person {
 	 
 	private double monthlyIncome; //input from user
-	private Account account; //needs to be created
+	public Account account; //needs to be created
 	Credentials credentials;//input from user
 	private BankManager bankManager; 
 	
@@ -15,7 +15,10 @@ public class AccountOwner extends Person {
 		super(firstName, lastName, phoneNumber, birthDay, birthMonth, birthYear);
 		setMonthlyIncome(monthlyIncome);
 		credentials = new Credentials(userName, password);
-		account = new Account(); //TODO - change to approve by manager
+	}
+	
+	public void askForNewAccount() {
+		bankManager.addToAccountsToApprove(this);
 	}
 	
 	private void setMonthlyIncome(double monthlyIncome) {
@@ -32,6 +35,10 @@ public class AccountOwner extends Person {
 	
 	public Credentials getCredentials() {
 		return credentials;
+	}
+	
+	public double getMonthlyIncome() {
+		return monthlyIncome;
 	}
 	
 	//Use Case 3
@@ -84,11 +91,11 @@ public class AccountOwner extends Person {
 		else {
 			account.takeLoan(loanAmount,numOfpayments);
 		}
-		
-		
-		
 	}
 	
+	
+
+
 	
 	
 	
