@@ -110,9 +110,23 @@ public class Account {
 			
 			System.out.println("the process ended succesfully.");
 		}
-			
+	}
+	
+	public void takeLoan(double loanAmount,int numOfpayments) {
+		System.out.println("approved. monthly return amount: " + loanAmount/numOfpayments + "NIS.");
+		
+		balance += loanAmount;
+		//TODO what happens to the bank 
+
+		LocalDate timeStamp = LocalDate.now(); 
+		String info = String.format("a loan of %f NIS.", loanAmount);
+		addActivityToHistory(timeStamp, loanAmount, info, "GET_LOAN");
+		
+		System.out.println("the process ended succesfully.");
 		
 	}
+	
+	
 	
 	
 

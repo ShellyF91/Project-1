@@ -76,6 +76,19 @@ public class AccountOwner extends Person {
 		}	
 	}
 	
+	//Use case 9
+	public void askForLoan(double loanAmount, int numOfpayments) {
+		if(loanAmount > account.accountProperties.getMaxLoanAmount() || numOfpayments > 60) {
+			System.out.println("The loan request was denied");
+		}
+		else {
+			account.takeLoan(loanAmount,numOfpayments);
+		}
+		
+		
+		
+	}
+	
 	
 	
 	
