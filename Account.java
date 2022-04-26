@@ -129,10 +129,7 @@ public class Account {
 		System.out.println("the process ended succesfully.");
 	}
 	
-	public void payBill(double loanAmount,int numOfpayments) {
-		
-	}
-	
+
 	
 	
 

@@ -97,7 +97,7 @@ public class AccountOwner extends Person {
 	}
 	
 	//Use case 9
-	public void askForLoan(double loanAmount) {
+	public void askForLoan(double loanAmount, int numOfpayments) {
 		//TODO check who to pay to 
 		if(loanAmount > account.accountProperties.getMaxLoanAmount() || numOfpayments > 60) {
 			System.out.println("The loan request was denied");
