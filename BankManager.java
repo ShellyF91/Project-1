@@ -6,19 +6,17 @@ public class BankManager extends AccountOwner {
 	private AccountOwner [] managedAccounts;
 	private int accountsToApproveIndex;
 	private int managedAccountsIndex;
-	private double bankTotalBalance;
-	
-	
+
 	
 	public BankManager(String firstName, String lastName, String phoneNumber, int birthDay, int birthMonth,int birthYear, double monthlyIncome,
-			          String userName, String password, boolean isManager) {
-		super(firstName, lastName, phoneNumber, birthDay, birthMonth, birthYear, monthlyIncome, userName, password, isManager); 
+			          String userName, String password) {
+		super(firstName, lastName, phoneNumber, birthDay, birthMonth, birthYear, monthlyIncome, userName, password); 
 		accountsToApprove = new AccountOwner[100]; 
 		managedAccounts =  new AccountOwner[100];
 		accountsToApproveIndex = 0; 
 		managedAccountsIndex = 0; 
-		bankTotalBalance = 0; 
 	}
+
 	
 	public void addToAccountsToApprove(AccountOwner accountOwner) {
 		accountsToApprove[accountsToApproveIndex] = accountOwner;
@@ -48,10 +46,6 @@ public class BankManager extends AccountOwner {
 			accountsToApprove[i] = null;
 		}
 		accountsToApproveIndex = 0; 
-	}
-	
-	public void addToBankTotalBalance(double amount) {
-		bankTotalBalance += amount;
 	}
 	
 }

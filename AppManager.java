@@ -13,9 +13,9 @@ public class AppManager {
 		users = new AccountOwner [100]; 
 		usersIndex = 0; 
 	}
-	
+
 	public AppManager() {
-		
+
 	}
 	
 	public int getUsersIndex() {
@@ -23,25 +23,26 @@ public class AppManager {
 	}
 	
 	public void openApp() {
-		int optionInput;
-		System.out.println("Welcome to the bank app! please enter 1 to login, 2 to open an account, 0 to exit");
-		optionInput= Integer.parseInt(Utils.scanner.nextLine());
-		switch(optionInput) {
+		int optionInput = -1;
+		
+		while(optionInput != 0) {
+			System.out.println("Welcome to the bank app! please enter 1 to login, 2 to open an account, 0 to exit.");
+			optionInput= Integer.parseInt(Utils.scanner.nextLine());
+			switch(optionInput) {
 			case 1:
 				login();
-				Utils.scanner.close();
 				break; 
 			case 2: 
 				openAccount();
-				Utils.scanner.close();
 				break; 
 			case 0: 
-				Utils.scanner.close();
 				System.out.println("Goodbye!");
 				break;
 			default: 
-				System.out.println("please try again");
+				System.out.println("please try again.");
 			}
+			System.out.println("");
+		}
 	}
 	
 	public void login() {
@@ -53,9 +54,9 @@ public class AppManager {
 			System.out.println("hello " + userName + ", please enter your password:" );
 			String password = Utils.scanner.nextLine();
 			// checks if password is correct
-			if(isPasswordCorrect(password)) {
+			if(isPasswordCorrect(userName, password)) {
 				currUser = findAccountOwnerByName(userName); 
-				//everything is correct
+				//if everything is correct
 				handleALoggedInUser(currUser);
 			}
 			else {
@@ -64,7 +65,7 @@ public class AppManager {
 				while(passwordMistakes < 3) {
 					System.out.println("invalid password. please try again:");
 					password = Utils.scanner.nextLine();
-					if(isPasswordCorrect(password)) { 
+					if(isPasswordCorrect(userName, password)) { 
 						currUser = findAccountOwnerByName(userName);
 						handleALoggedInUser(currUser);
 						break;
@@ -147,23 +148,32 @@ public class AppManager {
 			}
 		}		
 	}
-	
+
 	public void openAccount() {
 		System.out.println("--------Open a new account--------");
 		currUser = Utils.createNewAccountOwner();
 		if(isUserNameExist(currUser.credentials.getUserName())) {
+			currUser = null;
 			System.out.println("user name alreay exist, please try again.");
-			currUser = null; 
 		}
 		else {
 			currUser.askForNewAccount();
 			System.out.println("you have submitted succesfully. Your account will be approved soon.");
 			users[usersIndex] = currUser;
 			usersIndex++;
+			//check 
+			printUsers();
 		}	
 	}
 	
+	public void printUsers(){
+		System.out.println("users:");
+		for(int i = 0; i < usersIndex; i++)
+			System.out.println(users[i].getFirstName());
+		
+	}
 	
+	// searching 
 	public boolean isUserNameExist(String userName) {
 		for(int i = 0; i < usersIndex || users[i] != null; i++) {
 			if(users[i].getCredentials().getUserName().equals(userName))
@@ -172,17 +182,13 @@ public class AppManager {
 		return false;
 	}
 	
-	public boolean isPasswordCorrect(String password) {
-		for(int i = 0; i < usersIndex || users[i] != null; i++) {
-			if(users[i].credentials.getPassword().equals(password))
-				return true; 
-		}
-		return false;
+	public boolean isPasswordCorrect(String userName, String password) {
+		return findAccountOwnerByName(userName).getCredentials().getPassword() == password; 
 	}
 	
 	public AccountOwner findAccountOwnerByName(String userName) {
 		for(int i = 0; i < usersIndex || users[i] != null; i++) {
-			if(users[i].credentials.getUserName() == userName)
+			if(users[i].getCredentials().getUserName() == userName)
 				return users[i]; 
 		}
 		return null;
@@ -195,5 +201,4 @@ public class AppManager {
 		}
 		return null;
 	}
-
 }

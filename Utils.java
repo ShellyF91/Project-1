@@ -49,13 +49,12 @@ public class Utils {
 		System.out.println("enter your monthly income:");
 		double monthlyIncome = scanner.nextDouble();
 		
-		System.out.println("enter 'true' if you are a bank manager, 'false' if you are not.");
-		boolean isManager = scanner.nextBoolean();
+		scanner.nextLine();
 		
 
 		AccountOwner newAccountOwner = new AccountOwner(firstName, lastName, phoneNumber, 
 				 birthDay, birthMonth, birthYear, monthlyIncome,
-				 userName,  password,  isManager);
+				 userName,  password);
 		return newAccountOwner; 
 	}
 	

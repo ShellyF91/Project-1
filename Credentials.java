@@ -20,22 +20,20 @@ public class Credentials {
 		return password; 
 	} 
 	
-	private int setUserName(String userName) {
-		if(isUserNameValid(userName)) {
+	private void setUserName(String userName) {
+		if(isUserNameValid(userName))
 			this.userName = userName; 
-			return 0;
-		}
 		else 
-			return 1; 
+			System.out.println("Illegal user name. try again."); 
 	}
 	
-	private int setPassword(String password) {
-		if(isPasswordValid(password)) {
-			this.password = password; 
-			return 0;
-		}
-		else 
-			return 1; 
+	private void setPassword(String password) {
+//		if(isPasswordValid(password)) {
+//			this.password = password; 
+//		}
+//		else 
+//			System.out.println("Illegal password. try again."); 
+		this.password = password; 
 	}
 	
 	private boolean isUserNameValid(String userName) {
@@ -50,14 +48,12 @@ public class Credentials {
 		if(password.length() < 4 || password.length() > 8)
 			return false; 
 		boolean isThereADigit = false, isThereALetter = false;
-		for(int i = 0; i < userName.length() && (! isThereADigit || ! isThereALetter ); i++) {
-			if(!Character.isLetter(userName.charAt(i)))
+		for(int i = 0; i < password.length(); i++) {
+			if(Character.isLetter(password.charAt(i))) 
 				isThereALetter = true; 
-			if(!Character.isDigit(userName.charAt(i)))
+			if(Character.isDigit(password.charAt(i)))
 				isThereADigit = true; 				
 		}
-		
 		return(isThereADigit && isThereALetter);
 	}
-
 }
