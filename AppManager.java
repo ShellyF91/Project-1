@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AppManager {
 	
-	private AccountOwner currUser;
+	private static AccountOwner currUser;
 	private static AccountOwner[] users;
 	private static int usersIndex; 
 	
@@ -15,14 +15,24 @@ public class AppManager {
 	}
 
 	public AppManager() {
+		users[0] = new AccountOwner("Shelly", "Foran", "0525319556", 
+				 4, 11, 1991, 100,
+				 "Shelly",  "a1a1a1");
+		users[1] = new AccountOwner("Eran", "Krivine", "0548166630", 
+				 22, 7, 1986, 100,
+				 "Eran",  "a2a2a2");
+		users[2] = new AccountOwner("Karin", "Blum", "0524248724", 
+				 26, 5, 1987, 200,
+				 "Karin",  "a3a3a3");
+		usersIndex = 3;
 
 	}
 	
-	public int getUsersIndex() {
+	public static int getUsersIndex() {
 		return usersIndex;
 	}
 	
-	public void openApp() {
+	public static void openApp() {
 		int optionInput = -1;
 		
 		while(optionInput != 0) {
@@ -45,7 +55,7 @@ public class AppManager {
 		}
 	}
 	
-	public void login() {
+	public static void login() {
 		System.out.println("--------login to your bank account--------");
 		System.out.println("please enter your user name:");
 		String userName = Utils.scanner.nextLine();
@@ -85,7 +95,7 @@ public class AppManager {
 		}
 
 	
-	public void handleALoggedInUser(AccountOwner currUser) {
+	public static void handleALoggedInUser(AccountOwner currUser) {
 		//presenting the login options
 		System.out.println("Hello "+ currUser.credentials.getUserName() + " ,you are logged in to your account.");
 		System.out.println("Your balance is " + currUser.getAccount().getBalance() + " NIS.");
@@ -149,7 +159,7 @@ public class AppManager {
 		}		
 	}
 
-	public void openAccount() {
+	public static void openAccount() {
 		System.out.println("--------Open a new account--------");
 		currUser = Utils.createNewAccountOwner();
 		if(isUserNameExist(currUser.credentials.getUserName())) {
@@ -161,12 +171,10 @@ public class AppManager {
 			System.out.println("you have submitted succesfully. Your account will be approved soon.");
 			users[usersIndex] = currUser;
 			usersIndex++;
-			//check 
-			printUsers();
 		}	
 	}
 	
-	public void printUsers(){
+	public static void printUsers(){
 		System.out.println("users:");
 		for(int i = 0; i < usersIndex; i++)
 			System.out.println(users[i].getFirstName());
@@ -174,7 +182,7 @@ public class AppManager {
 	}
 	
 	// searching 
-	public boolean isUserNameExist(String userName) {
+	public static boolean isUserNameExist(String userName) {
 		for(int i = 0; i < usersIndex || users[i] != null; i++) {
 			if(users[i].getCredentials().getUserName().equals(userName))
 				return true; 
@@ -182,11 +190,11 @@ public class AppManager {
 		return false;
 	}
 	
-	public boolean isPasswordCorrect(String userName, String password) {
+	public static boolean isPasswordCorrect(String userName, String password) {
 		return findAccountOwnerByName(userName).getCredentials().getPassword() == password; 
 	}
 	
-	public AccountOwner findAccountOwnerByName(String userName) {
+	public static AccountOwner findAccountOwnerByName(String userName) {
 		for(int i = 0; i < usersIndex || users[i] != null; i++) {
 			if(users[i].getCredentials().getUserName() == userName)
 				return users[i]; 
